@@ -1,0 +1,25 @@
+@import "./../../../../src/styles/utils.scss";
+
+.preloaderWrapper {
+  background: rgba(0, 0, 0, 0);
+  //background: linear-gradient(110deg, rgba(0, 0, 0, 0.1) 38%, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.1) 63%);
+  //border-radius: 5px;
+  //background-size: 200% 100%;
+  animation: 0.2s shine ease-in 1;
+  animation-fill-mode: forwards;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.preloader {
+  @include preloader;
+}
+
+
+@keyframes shine {
+  to {
+    //background-position-x: -100%;
+    background: rgba(0, 0, 0, 0.8);
+  }
+}

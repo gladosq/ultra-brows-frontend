@@ -1,0 +1,14 @@
+/*--- Colors ---*/
+$basic-white: #ffffff;
+$netflix-gradient: linear-gradient(to right, #8e0e00, #1f1c18);
+$background-blur: radial-gradient(50% 50% at 50% 50%, rgba(123, 13, 3, 0.2) 0%, rgba(128, 14, 3, 0) 100%);
+$basic-dark: #0d1117;
+$element-dark: #161b22;
+$basic-border-color: #312828;
+$active-border-color: #820e03;
+$active-box-shadow: 0 0 29px rgba(255, 222, 194, 0.8);
+$basic-gray: #83949e;
+$basic-green: #009e2b;
+
+/*--- Breakpoints ---*/
+$max-width-container: 1400px;

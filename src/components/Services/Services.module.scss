@@ -1,0 +1,256 @@
+@import "./../../../src/styles/utils.scss";
+
+.wrapper {
+  @include container;
+  position: relative;
+  margin-bottom: 200px;
+  margin-top: 200px;
+  background: $background-blur;
+}
+
+.modeWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 60px;
+
+  h2 {
+    font-size: 30px;
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+    pointer-events: none;
+    user-select: none;
+    font-weight: 700;
+    display: none;
+  }
+}
+
+.previewWrapper {
+  position: relative;
+
+
+  .previewImage {
+    position: relative;
+    width: 600px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+
+  .previewActive {
+    opacity: 0.7;
+  }
+}
+
+.pictureWrapper {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  transition: 0.35s all ease-in;
+  opacity: 0;
+  height: 0;
+  transform: translateY(80px);
+  overflow: hidden;
+
+
+  .pictureImage {
+    position: relative;
+    max-width: 100%;
+    object-fit: cover;
+  }
+}
+
+.servicesList {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.listWrapper,
+.listCategoryWrapper {
+  display: flex;
+  flex-direction: column;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 10px;
+  width: 30%;
+}
+
+.labelPrice {
+  font-family: var(--sofia-font);
+  font-size: 32px;
+  margin-top: 30px;
+}
+
+.listDifficulty {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 30px;
+}
+
+.itemWrapper {
+  position: relative;
+  margin-bottom: 20px;
+
+
+  input {
+    display: none;
+    position: relative;
+    z-index: 10;
+  }
+
+  input + .label {
+    .labelPrice {
+      transition: 0.25s opacity, 0.35s transform;
+      opacity: 0;
+      transform: translateX(-50px) scale(0.5);
+    }
+  }
+
+  input:checked + .label {
+    box-shadow: $active-box-shadow;
+    border: 0;
+    animation: pulse 0.6s ease-in-out 1;
+    animation-fill-mode: forwards;
+    background: rgba(255, 222, 194, 0.8);
+    color: black;
+
+    .subtitle {
+      color: black;
+    }
+    .labelPrice {
+      opacity: 1;
+      transform: translateX(0);
+
+    }
+
+
+    .pictureWrapper {
+      opacity: 1;
+      height: 300px;
+      transition: 0.35s all ease-in;
+
+      transform: translateY(0);
+
+
+    }
+  }
+
+  input:checked ~ .decorationWrapper {
+    animation: pulse 0.24s ease-in-out 1;
+
+    .decorationCurrent {
+      background: radial-gradient(50% 50% at 50% 50%, rgba(49, 0, 98, 0.3) 0%, rgba(0, 0, 0, 0) 100%);
+    }
+  }
+
+  .label {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 18px;
+    background: $element-dark;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.16s box-shadow;
+    border: 1px solid $basic-border-color;
+    position: relative;
+    user-select: none;
+
+    .title {
+      font-size: 36px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 4;
+      font-family: var(--sofia-font);
+    }
+
+    .subtitle {
+      font-size: 14px;
+      color: $basic-gray;
+      font-weight: 400;
+      line-height: 22px;
+      position: relative;
+      z-index: 4;
+    }
+  }
+}
+
+.listCategoryWrapper {
+  .label .title {
+    margin-bottom: 0;
+  }
+}
+
+.decorationWrapper {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 10px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.decoration {
+  transition: 1s opacity;
+}
+
+.decorationCurrent {
+  opacity: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(50% 50% at 50% 50%, rgba(255, 222, 194, 0.09) 0%, rgba(128, 14, 3, 0) 100%);
+}
+
+.decorationFadeAway {
+  opacity: 0;
+}
+
+.startGame {
+  width: 70%;
+  margin: 30px auto 0;
+  display: flex;
+  justify-content: flex-end;
+
+  button {
+    border-radius: 10px;
+    background: red;
+    padding: 18px 48px;
+    border: 0;
+    font-family: inherit;
+    color: $basic-white;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 17px;
+
+    &:hover {
+      opacity: 0.7;
+    }
+
+    &:active {
+      opacity: 1;
+    }
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(6px) scale(0.98);
+  }
+  100% {
+    transform: translateY(0) scale(1.02);
+  }
+}
