@@ -29,6 +29,5 @@ export default function Banner() {
 				banner
 			</div>
 		</div>
-
 	)
 }

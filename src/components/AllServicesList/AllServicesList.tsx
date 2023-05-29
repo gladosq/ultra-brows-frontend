@@ -7,7 +7,7 @@ import {useEffect, useState} from 'react';
 import useServices from '../../api/services';
 
 export default function AllServicesList() {
-    const [services, setServices] = useState([]);
+    const [services, setServices] = useState<any>([]);
     const {data, isSuccess, isLoading} = useServices();
 
     useEffect(() => {
@@ -16,7 +16,7 @@ export default function AllServicesList() {
 
     const onSearch = (e: string) => {
         if (e) {
-            const filteredServices = services.slice().filter((item) => {
+            const filteredServices = services.slice().filter((item: any) => {
                 return item.title.toLowerCase().indexOf(e.toLowerCase()) >= 0
                     || item.subtitle.toLowerCase().indexOf(e.toLowerCase()) >= 0;
             });
@@ -37,7 +37,7 @@ export default function AllServicesList() {
                 onSearch={onSearch}
             />
             <ul className={s.list}>
-                {isSuccess && services.map(({title, id, price, subtitle, image}) => (
+                {isSuccess && services.map(({title, id, price, subtitle, image}: any) => (
                     <li className={s.item} key={id}>
                         <div className={s.imageWrapper}>
                             <Image className={s.image} src={image} alt={''} fill/>

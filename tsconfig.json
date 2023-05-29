@@ -29,7 +29,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "C:\\Projects\\movie-guesser\\.next/types/**/*.ts"
+    "C:\\Projects\\ultra-brows\\.next/types/**/*.ts"
   ],
   "exclude": [
     "node_modules"

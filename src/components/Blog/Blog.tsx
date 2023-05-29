@@ -42,34 +42,31 @@ export default function Blog({mainTitle = true, news}: BlogProps) {
 			{mainTitle && <h2>Блог</h2>}
 			<div className={s.swiperOuterWrapper}>
 				<Swiper
+					modules={[Navigation, Pagination]}
 					slidesPerView={2.2}
 					spaceBetween={40}
 					pagination={{
 						type: 'bullets',
 						clickable: true
 					}}
-					// navigation={true}
 					navigation={{
 						disabledClass: `${s.disabledButton}`,
 						prevEl: `.${s.prevButton}`,
 						nextEl: `.${s.nextButton}`
 					}}
-
-					modules={[Navigation, Pagination]}
+					onNavigationNext={() => console.log('work')}
 					className={s.swiperWrapper}
 				>
 					{blogContent()}
 				</Swiper>
-				{news.length > 3 && (
-					<div className={s.navigation}>
-						<div className={`${s.prevButton}`}>
-							<PrevButtonIcon/>
-						</div>
-						<div className={`${s.nextButton}`}>
-							<NextButtonIcon/>
-						</div>
+				<div className={s.navigation}>
+					<div className={s.prevButton}>
+						<PrevButtonIcon/>
 					</div>
-				)}
+					<div className={s.nextButton}>
+						<NextButtonIcon/>
+					</div>
+				</div>
 			</div>
 		</div>
 	)

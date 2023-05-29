@@ -16,7 +16,7 @@ const {TextArea} = Input;
 
 export default function Page() {
 	const [isModalOpen, setIsModalOpen] = useState(false);
-	const [fileList, setFileList] = useState([]);
+	const [fileList, setFileList] = useState<any>([]);
 	const [previewImage, setPreviewImage] = useState('');
 	const [previewTitle, setPreviewTitle] = useState('');
 	const [previewOpen, setPreviewOpen] = useState(false);
@@ -28,15 +28,9 @@ export default function Page() {
 
 	const {data, isSuccess, isLoading, refetch} = useNews();
 
-
-	console.log('data:', data);
-
-
-
 	useEffect(() => {
 		setMounted(true);
 	}, []);
-
 
 	const {
 		mutate,
@@ -48,12 +42,12 @@ export default function Page() {
 
 
 
-	const onAddPost = (formValues) => {
+	const onAddPost = (formValues: any) => {
 		let formDataFragment = new FormData();
 
 		formDataFragment.append('title', formValues.title);
 		formDataFragment.append('subtitle', formValues.subtitle);
-		formDataFragment.append('image_blob', fileList[0].originFileObj);
+		formDataFragment.append('image_blob', fileList[0]?.originFileObj);
 
 		mutate(
 			{formData: formDataFragment},

@@ -31,7 +31,7 @@ export default function Services() {
 		setMousePos({x: x, y: y});
 	};
 
-	const getPreviewImage = (service) => {
+	const getPreviewImage = (service: any) => {
 		switch (service) {
 			case 'Брови':
 				return <Image

@@ -31,10 +31,12 @@ export const checkImageFormat = (file: RcFile) => {
     }
 
     const reader = new FileReader();
+	// @ts-ignore
     reader.readAsDataURL(file);
     reader.addEventListener('load', event => {
-        const _loadedImageUrl = event.target.result;
+        const _loadedImageUrl = event?.target?.result;
         const image = document.createElement('img');
+			// @ts-ignore
         image.src = _loadedImageUrl;
         image.addEventListener('load', () => {
             const {width, height} = image;
@@ -47,6 +49,7 @@ export const checkImageFormat = (file: RcFile) => {
 export const getBase64 = (file: RcFile): Promise<string> =>
     new Promise((resolve, reject) => {
         const reader = new FileReader();
+				// @ts-ignore
         reader.readAsDataURL(file);
         reader.onload = () => resolve(reader.result as string);
         reader.onerror = (error) => reject(error);

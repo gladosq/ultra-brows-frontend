@@ -7,7 +7,6 @@ import {Form, Modal, Input, Button, message} from 'antd';
 import {useMutation} from '@tanstack/react-query';
 import {fetchLogin} from '../../api/login';
 import {useCookie} from 'react-use';
-import {useRouter} from 'next/navigation'
 import jwt_decode from 'jwt-decode';
 import useMainStore from '../../store/store';
 import {fetchRegister} from '../../api/registration';
@@ -32,7 +31,7 @@ export default function Header() {
 	const decodedJwt = token ? jwt_decode(token) : null;
 
 	const {mutate, isLoading} = useMutation(fetchLogin);
-	const {mutate: mutateRegister, isLoading: isLoadingRegister} = useMutation(fetchRegister);
+	const {mutate: mutateRegister} = useMutation(fetchRegister);
 
 	const [form] = Form.useForm();
 
@@ -47,7 +46,7 @@ export default function Header() {
 					formAuth.resetFields();
 					setIsModalOpen(false);
 				},
-				onError: (error) => {
+				onError: () => {
 					message.warning('Ошибка авторизации');
 				}
 			})
@@ -55,15 +54,14 @@ export default function Header() {
 
 	const onRegistration = (e: any) => {
 		const {confirm, ...dataObject} = e;
-		console.log('dataObject:', dataObject);
 
 		// @ts-ignore
 		mutateRegister({...dataObject}, {
 			onSuccess: (res) => {
-				console.log('res:', res);
 				form.resetFields();
+				setIsModalRegistrationOpen(false);
 			},
-			onError: (error) => {
+			onError: () => {
 				message.warning('Ошибка регистрации');
 			}
 		})
@@ -99,6 +97,7 @@ export default function Header() {
 				</div>
 				{mounted && token ? (
 					<div className={s.authorized}>
+						{/*// @ts-ignore*/}
 						<p>Добро пожаловать, <span>{decodedJwt && decodedJwt.name}</span></p>
 						<button
 							onClick={() => {
@@ -173,7 +172,6 @@ export default function Header() {
 				onCancel={() => setIsModalRegistrationOpen(false)}
 				footer={false}
 				width={400}
-				form={form}
 			>
 				<Form
 					name='registration'
@@ -181,6 +179,7 @@ export default function Header() {
 					autoComplete='off'
 					className={s.form}
 					layout='vertical'
+					form={form}
 				>
 					<h2>Регистрация</h2>
 					<Form.Item
